@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+	<title>content-1</title>
+	<link rel="stylesheet" type="text/css" href="/resources/css/mystyle.css"/>
+    </head>
+    <body>
+	<ui:composition>
+	    <h:form>
+		<div class="menu3">
+		    <h:link outcome="/index.xhtml" >
+			戻る
+		    </h:link>
+		</div>		
+		<h:dataTable value="#{bb.history}" var="oh" rules="rows" columnClasses="hc1,hc2" width="100%">
+		    <h:column>
+			<h:panelGrid columns="1">
+			    <h:panelGroup >
+				<h:outputText value="発注日："/>
+				<h:outputText value="#{oh.orderDate}">
+				    <f:convertDateTime pattern="yyyy年M月d日" timeZone="JST"/>
+				</h:outputText>
+			    </h:panelGroup>
+			    <h:panelGroup>
+				<h:outputText value="受取人："/>
+				<h:outputText value="#{oh.form_name}"/>
+			    </h:panelGroup>
+			    <h:panelGroup>
+				<h:outputText value="合計："/>
+				<h:outputText value="#{oh.totalPrice}">
+				    <f:convertNumber type="currency" locale="ja_JP"/>
+				</h:outputText>
+			    </h:panelGroup>
+			</h:panelGrid>
+		    </h:column>
+		    <h:column>
+			<h:dataTable value="#{oh.orderLine}" var="odr" columnClasses="hcc1, hcc2, hcc3,hcc4" >
+			    <h:column>
+				<p:graphicImage value="#{bb.picS}" >
+				    <f:param name="productId" value="#{odr.product.id}"/>
+				</p:graphicImage>				
+			    </h:column>
+			    <h:column>
+				<h:outputText value="#{odr.product.name}"/>
+			    </h:column>
+			    <h:column>
+				価格：
+				<h:outputText value="#{odr.product.price}">
+				    <f:convertNumber type="currency" locale="ja_JP"/>
+				</h:outputText>
+			    </h:column>
+			    <h:column>
+				個数：
+				<h:outputText value="#{odr.quantity}"/>
+			    </h:column>			
+			</h:dataTable>
+		    </h:column>
+		</h:dataTable>
+	    </h:form>
+	</ui:composition>
+    </body>
+</html>

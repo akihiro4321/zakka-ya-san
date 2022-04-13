@@ -1,0 +1,280 @@
+body {
+    font-family: メイリオ ,Osaka;	/* 全体のフォント */
+    font-size: 10pt;				/* 全体の文字サイズ */
+    margin: 20px 10px 10px 20px;	/* 上右下左の順でマージンを指定 */
+    line-height: 1.6em;
+}
+h1 {
+    font-size: 1.2em;				/* 文字サイズ */
+    border-bottom: solid 1px #999;	/* ボーダーライン（下） */
+    text-align: center;				/* 中央揃え */
+
+}
+.error{
+    font-size: 0.7em;	/* エラーメッセージ用 */		
+}
+
+/**************************** 
+    footerのためのCSS 
+******************************/
+
+address{
+    font-style: normal;				/* 斜体字にしない */
+    font-size: 0.7em;				/* 文字サイズ（小） */
+    text-align: center;				/* 中央揃え */
+    border-top: solid 1px #999;		/* ボーダーライン（上） */
+    clear:both;
+}	
+
+/* *****************************
+    content-1のためのCSS
+*********************************/
+#view{
+    height: 800px;
+}
+.sel {								/* リストとメニュー用 */
+    padding-left: 30px;
+    font-family: メイリオ ,Osaka;
+    font-size: 1.0em;
+}
+.menu1{
+    height: 50px;
+    border: solid 1px #999999;
+    margin-bottom: 20px;
+
+}
+.pagingButton{
+    padding-left:110px;
+}
+.r1 {/* ヘッダー以外の行 */
+    background-color: #dbe9f9;	/* 薄い青の背景色 */
+}
+.r2 {/* ヘッダー以外の行 */
+    background-color: #fde6e6;	/* 薄い青の背景色 */
+}
+.c1	{/* ２列目 */
+    width: 150px;				/* 横幅を100pxに */
+    padding: 10px;				/* 左端に10pxの余白 */
+    vertical-align: top;
+    text-align: center;
+}
+.c2	{/* １列目 */
+    /* 横幅を100pxに */
+    vertical-align: top;
+    padding: 10px;
+}
+
+.c3	{/* ３列目 */
+    width: 130px;				/* 横幅を300pxに */
+    padding: 10px;			/* 左端に10pxの余白 */
+    vertical-align: top;
+    text-align: center;
+}
+.product{
+    font-size: 1.2em;
+}
+.tx{
+    display: block;
+    padding-left: 50px;
+}
+.mgn{
+    margin-right:5px;
+}
+/* *****************************
+    content-2のためのCSS
+*********************************/
+#pic {
+    float: left;
+    margin-right: 20px;
+}
+#exp {
+
+}
+#bklink{
+    text-align: right;
+}
+.name{
+    display: box;
+    font-size: 1.5em;
+}
+.price{
+    display: block;
+    padding-top:10px;
+    font-size: 1.5em;
+    color:  #ff0066;
+}
+.text{
+    display:  block;
+    padding-top: 15px;
+}
+#cart{
+    margin-top: 20px;
+}
+/* *****************************
+    content-3のためのCSS
+*********************************/
+.del{
+    display: block;
+    padding:15px;
+ }  
+ .item{
+     font-size: 1.2em;
+ }
+ 
+/* *****************************
+    content-3のためのCSS
+*********************************/    
+.menu2{
+    height: 30px;
+    border: solid 1px #999999;
+    margin-bottom: 20px;
+    padding:5px;
+    text-align: right;
+    width:100%;
+}
+.cart_c1{
+    padding-left: 550px;
+}
+.msg{
+    font-size: 1.5em;
+    color:blue;
+}
+.quantity{
+    text-align: center;
+    color: #666666;
+    font-size: 1.2em;
+    margin-left: 10px;
+}
+.q_inp{
+    color:#ff0066;
+    font-size: 1.5em;
+}
+.emptyMsg{
+    font-size: 1.5em;
+    color:#0099cc
+}
+
+/* *****************************
+    content-4のためのCSS
+*********************************/    
+.cusform{
+    margin-left:50px;
+}
+.hdr{
+    font-size: 1.8em;
+    padding-bottom: 20px;
+}
+.ft{
+    font-size: 1.2em;
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+.inp{
+    padding: 3px;
+    font-size: 1em;
+    font-family: メイリオ ,Osaka;
+}
+.btn{
+    margin-top: 10px;
+    width:250px;
+    height:25px;
+    font-size: 1.1em;
+}
+.c10 {	/* index.xhtmlのpanelGrid１列目 */
+	width:150px;					/* 幅を150pxにする */
+	padding:5px 10px 3px 10px;			/* 上、右、下、左の順にパディングを指定 */
+	vertical-align: top;				/* 上端揃え */
+	text-align: right;
+	border-right:solid 1px #999999;			/* 左側にボーダーライン */
+}
+.c20 {	/* index.xhtmlのpanelGrid２列目 */
+	width:600px;					/* 幅を600pxにする */
+	padding:5px 3px 3px 10px;			/* 上、右、下、左の順にパディングを指定 */
+	vertical-align: top; 				/* 上端揃え */
+}
+.c30 {	/* index.xhtmlのpanelGrid３列目 */
+	width:50px;					/* 幅を50pxにする */
+	padding:5px 3px 3px 10px;			/* 上、右、下、左の順にパディングを指定 */
+	vertical-align: top; 				/* 上端揃え */
+}
+
+/* index.xhtmlのpanelGridを奇数行と偶数行で違う色に塗り分ける */
+.row_odd{background-color: #e1effc;}			/* 奇数行用。背景を薄い青色に */
+.row_even{background-color: #f0f0f0;}			/* 偶数行用。背景を薄いグレーに */
+
+
+/* *****************************
+   loginのためのCSS
+*********************************/
+.loginFrame{
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+}
+.lc1{
+    font-size: 1.2em;
+    width: 100px;
+    text-align: center;
+    padding-right: 5px;
+}
+.loginBtn{
+    margin-top: 10px;
+    width:130px;
+    height:25px;
+    font-size: 1.1em;
+}
+.lrow{
+    height:40px;
+}
+.loginInput {
+    font-family: メイリオ,Osaka;
+    font-size: 1.1em;
+    border:none;
+    padding: 3px 5px;
+    background-color:  #d6eaff;
+}
+.loginHeader{
+    font-size: 1.5em;
+    padding-bottom: 5px;
+}
+/* *****************************
+   content-6のためのCSS
+*********************************/
+.menu3{
+    text-align: right;
+    margin-bottom: 10px; 
+    margin-top: 0px;
+    background-color: #e0e0e0;
+    padding: 5px 20px 5px 5px;
+   
+}
+.hc1{
+    padding: 10px 5px;
+    width: 160px;
+    vertical-align: top;
+}
+.hc2{
+    padding: 5px;
+    
+}
+.hcc1{
+    width: 150px;
+}
+.hcc2{
+    padding-left: 10px;
+    vertical-align: top;
+    width: 200px;
+}
+.hcc3{
+    vertical-align: top;
+    width: 150px;
+}
+.hcc4{
+    vertical-align: top;
+}
+.historyMsg{
+    font-size: 1.2em;
+    color: #444444;
+}

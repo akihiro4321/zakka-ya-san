@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+        <title>content-1</title>
+        <link rel="stylesheet" type="text/css" href="/resources/css/mystyle.css"/>
+    </head>
+    <body>
+        <ui:composition>
+            <p:growl showDetail="false" life="3000"/>
+            <h:form>
+                <div style="text-align: left">
+                    <h:link outcome="/info/register.xhtml" value="新規登録">
+                    </h:link>
+                </div>
+                <div style="text-align: left">
+                    <h:link outcome="/info/productRegister.xhtml" value="商品登録">
+                    </h:link>
+                </div>
+                <div style="text-align: right">
+                    <h:commandLink action="#{bb.dispCart()}">
+                        <h:graphicImage library="images" name="cart03.jpg" styleClass="mgn"/>
+                    </h:commandLink>
+                    <h:link outcome="/info/history.xhtml">
+                        <h:graphicImage library="images" name="cart06.jpg" styleClass="mgn"/>
+                    </h:link>
+                    <h:link outcome="/info/login.xhtml">
+                        <h:graphicImage library="images" name="login.jpg" styleClass="mgn"/>
+                    </h:link>
+                    <h:commandLink action="#{loginBean.logout()}">
+                        <h:graphicImage library="images" name="logout.jpg"/>
+                    </h:commandLink>		    
+                </div>
+                <div class="menu1">
+                    <h:panelGrid columns="7" style="padding: 10px;">
+                        並び替え
+                        <h:selectOneMenu value="#{bb.priceItem}" styleClass="sel">
+                            <f:selectItems value="#{bb.priceItems}" />
+                            <f:ajax event="change" render="productTbl" 
+                                    listener="#{bb.counterClear()}"/>
+                        </h:selectOneMenu>			
+                        <h:selectOneRadio value="#{bb.kindItem}" styleClass="sel">
+                            <f:selectItems value="#{bb.kindItems}" />
+                            <f:ajax event="change" render="productTbl" 
+                                    listener="#{bb.counterClear()}"/>
+                        </h:selectOneRadio>
+                        <h:commandLink action="#{bb.productPage.top()}">
+                            <f:ajax render="productTbl currentPage"/>
+                            <h:graphicImage library="images" name="top.png" 
+                                            styleClass="pagingButton"/>
+                        </h:commandLink>
+                        <h:commandLink action="#{bb.productPage.back()}">
+                            <f:ajax render="productTbl currentPage"/>
+                            <h:graphicImage library="images" name="left.png"/>
+                        </h:commandLink>
+                        <h:commandLink action="#{bb.productPage.next()}">
+                            <f:ajax render="productTbl currentPage"/>
+                            <h:graphicImage library="images" name="right.png"/>
+                        </h:commandLink>
+                        <h:commandLink action="#{bb.productPage.bottom()}">
+                            <f:ajax render="productTbl currentPage"/>
+                            <h:graphicImage library="images" name="bottom.png"/>
+                        </h:commandLink>
+                    </h:panelGrid>
+                </div>
+                <div>
+                    <h:outputText id="currentPage" value="#{bb.productPage.getPage()}/#{bb.productPage.getPageMax()}">  
+                    </h:outputText>
+                </div>
+                <h:dataTable id="productTbl" value="#{bb.fromDb}" var="item" 
+                             headerClass="hd1" rowClasses="r1,r2" columnClasses="c1,c2,c3">
+                    <h:column >
+                        <h:commandLink action="#{bb.detail(item)}">
+                            <p:graphicImage value="#{bb.picS}" >
+                                <f:param name="productId" value="#{item.id}"/>
+                            </p:graphicImage>
+                        </h:commandLink>
+                    </h:column>
+                    <h:column>
+                        <h:commandLink action="#{bb.detail(item)}">
+                            <h:outputText value="#{item.name}" styleClass="product"/>
+                        </h:commandLink>
+                        <h:outputText  value="#{item.text}" styleClass="tx"/>
+                    </h:column>
+                    <h:column >
+                        <h:outputText value="#{item.price}" styleClass="q_inp">
+                            <f:convertNumber type="currency" locale="ja_JP"/>
+                        </h:outputText>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </ui:composition>
+    </body>
+</html>
