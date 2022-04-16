@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.ProductMapper">
+    <resultMap id="Base_Result_Map" type="entity.Product">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="price" property="price" jdbcType="INTEGER"/>
+        <result column="kind" property="kind" jdbcType="VARCHAR"/>
+        <result column="text" property="text" jdbcType="VARCHAR"/>
+        <result column="pic_S" property="pic_S" jdbcType="BLOB"/>
+        <result column="pic_L" property="pic_L" jdbcType="BLOB"/>
+    </resultMap>
+    
+    <select id="selectProduct" parameterType="query.ProductSelectQuery" resultMap="Base_Result_Map">
+        select id, name, price, kind, text, pic_S, pic_L
+        from ZAKKA_PRODUCT
+        <where>
+            <if test="appKind != null">
+                kind = #{appKind}
+            </if>
+        </where>
+        <trim prefix="order by">${orderBy}</trim>
+    </select>
+    
+    <select id="selectCount" parameterType="query.ProductSelectQuery" resultType="long">
+        select count(id)
+        from ZAKKA_PRODUCT
+        <where>
+            <if test="appKind != null">
+                kind = #{appKind}
+            </if>
+        </where>
+        <trim prefix="order by">${orderBy}</trim>
+    </select>
+</mapper>

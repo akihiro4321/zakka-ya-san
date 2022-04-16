@@ -22,11 +22,15 @@
                     <file>${file.reference.activation-1.1.1.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
+                <library dirs="200">
+                    <file>${file.reference.lombok-1.18.22.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
             </web-module-libraries>
             <web-module-additional-libraries/>
             <source-roots>
                 <root id="src.dir" name="src/java"/>
-                <root id="src.resources.dir"/>
+                <root id="src.resources2.dir"/>
             </source-roots>
             <test-roots>
                 <root id="test.src.dir" name="src/test"/>

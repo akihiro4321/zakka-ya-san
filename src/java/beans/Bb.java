@@ -29,7 +29,8 @@ public class Bb extends SuperBb implements Serializable {
 	public List<Product> getFromDb() {
 		List<Product> ls = null;
 		try {
-			ls = pm.getFromDb(priceItem, kindItem, productPage);
+			//ls = pm.getFromDb(priceItem, kindItem, productPage);
+                        ls = pm.getFromDbMybatis(priceItem, kindItem, productPage);
 		} catch (Exception e) {
 			facesMessage("商品の検索処理でエラーが発生しました");
 		}
@@ -38,7 +39,8 @@ public class Bb extends SuperBb implements Serializable {
 	// 総件数と最大取得件数を再設定する
 	public void counterClear() {
 		try {
-			pm.counterClear(kindItem, productPage);
+			//pm.counterClear(kindItem, productPage);
+                        pm.counterClearMybatis(kindItem, productPage);
 		} catch (Exception e) {
 			facesMessage("商品情報の初期化でエラーが発生しました");
 		}
