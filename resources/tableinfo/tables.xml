@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tableinfo>
+    <table>
+        <name>ZAKKA_ORDER_ZAKKA_ORDERLINE</name>
+        <columns>
+            <column jdbcType="BIGINT">APPORDER_ID</column>
+            <column jdbcType="BIGINT">ORDERLINE_ID</column>
+        </columns>
+    </table>
+    <table>
+        <name>SEQUENCE</name>
+        <columns>
+            <column jdbcType="VARCHAR">SEQ_NAME</column>
+            <column jdbcType="DECIMAL">SEQ_COUNT</column>
+        </columns>
+    </table>
+</tableinfo>

@@ -1,7 +1,10 @@
 package util;
 
+import dto.ColumnInfo;
+import dto.TableDto;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,10 +12,19 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  * テキストファイルの入力と出力を行うクラスメソッド<br/>
@@ -70,7 +82,7 @@ public class FileUtil {
      * resourcesからの相対パスで指定する（/resources/～）
      * @return	ArrayList<String[]>
      */
-    public static ArrayList<String[]> getCsv(String csv, String fpath) {
+    public static ArrayList<String[]> getCsv(String fpath) {
         String path = getRealPath(fpath);
         String[] array;
         ArrayList<String[]> arrayList = new ArrayList<String[]>();
@@ -87,6 +99,49 @@ public class FileUtil {
             log.severe("★ファイルが見つからない:" + fpath);
         }
         return arrayList;
+    }
+
+    public static TableDto getTableInfoFromXML(String className) {
+        TableDto tableDto = new TableDto();
+        String fileName = className.toLowerCase() + ".xml";
+        try {
+            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            Document document = documentBuilder.parse(new File("resources/tableinfo/" + fileName));
+
+            Element rootNode = document.getDocumentElement();
+            NodeList rootChildren = rootNode.getChildNodes();
+
+            for (int i = 0; i < rootChildren.getLength(); i++) {
+                Node node = rootChildren.item(i);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+                    String elementNodeName = element.getNodeName();
+                    if (elementNodeName.equals("name")) {
+                        tableDto.setTable(element.getTextContent());
+                    } else if (elementNodeName.equals("columns")) {
+                        List<ColumnInfo> columnInfoList = new ArrayList<ColumnInfo>();
+                        NodeList columnsChildren = node.getChildNodes();
+                        for (int k = 0; k < columnsChildren.getLength(); k++) {
+                            Node columnsnode = columnsChildren.item(k);
+                            if (columnsnode.getNodeType() == Node.ELEMENT_NODE) {
+                                Element columnselement = (Element) columnsnode;
+                                if (columnselement.getNodeName().equals("column")) {
+                                    ColumnInfo columnInfo = new ColumnInfo();
+                                    columnInfo.setColumnName(columnselement.getTextContent());
+                                    columnInfo.setJdbcType(columnselement.getAttribute("jdbcType"));
+                                    columnInfoList.add(columnInfo);
+                                }
+                            }
+                        }
+                        tableDto.setColumnInfoList(columnInfoList);
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return tableDto;
     }
 
     /**

@@ -6,10 +6,9 @@ import javax.ejb.Stateless;
 import util.TryCatchDb;
 
 @Stateless
-public class ProductDb extends TryCatchDb{
+public class ProductDb extends DBAccessManager{
 
 	public ProductDb() {
-		super(Product.class);
 	}
 
 }

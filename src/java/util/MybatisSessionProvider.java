@@ -4,29 +4,19 @@
  */
 package util;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UncheckedIOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import javax.ejb.Stateless;
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
-import javax.naming.InitialContext;
-import javax.sql.DataSource;
 import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.mapping.Environment;
-import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.apache.ibatis.transaction.TransactionFactory;
-import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 
 /**
  *
@@ -56,11 +46,11 @@ public class MybatisSessionProvider {
     
     @RequestScoped
     @Produces
-    public SqlSession appleSession() {
+    public SqlSession session() {
         return ssf.openSession();
     }
     
-    public void closeAppleSession(@Disposes SqlSession sqlSession) {
+    public void closeSession(@Disposes SqlSession sqlSession) {
         sqlSession.close();
     }
 }

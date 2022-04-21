@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table>
+    <name>ZAKKA_ORDERLINE</name>
+    <columns>
+        <column jdbcType="BIGINT">ID</column>
+        <column jdbcType="INTEGER">QUANTITY</column>
+        <column jdbcType="BIGINT">PRODUCT_ID</column>
+    </columns>
+</table>

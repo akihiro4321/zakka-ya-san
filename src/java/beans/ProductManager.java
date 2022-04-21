@@ -22,9 +22,6 @@ public class ProductManager {
 
     static final Logger log = Logger.getLogger(ProductManager.class.getName());
 
-    @PersistenceContext
-    EntityManager em;
-
     @Inject
     private SqlSession sqlSession;
 

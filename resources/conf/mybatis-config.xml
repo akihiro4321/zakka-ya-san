@@ -12,7 +12,7 @@
     </environment>
   </environments>
   <mappers>
-<!--    <mapper resource="mapper/mapper.xml"/>-->
+    <mapper resource="mapper/DBAccessMapper.xml"/>
     <mapper resource="mapper/ProductMapper.xml"/>
   </mappers>
 </configuration>

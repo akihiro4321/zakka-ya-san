@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table>
+    <name>ZAKKA_ORDER</name>
+    <columns>
+        <column jdbcType="BIGINT">ID</column>
+        <column jdbcType="VARCHAR">FORM_MAIL</column>
+        <column jdbcType="VARCHAR">FORM_MSG</column>
+        <column jdbcType="VARCHAR">FORM_NAME</column>
+        <column jdbcType="DATE">ORDERDATE</column>
+        <column jdbcType="INTEGER">TOTALPRICE</column>
+        <column jdbcType="VARCHAR">CUSTOMER_ID</column>
+    </columns>
+</table>

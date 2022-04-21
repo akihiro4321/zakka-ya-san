@@ -1,6 +1,7 @@
 package beans;
 import net.tkxtools.MailSender;
 import db.*;
+import dto.DefaultResultDto;
 import entity.*;
 import java.io.ByteArrayInputStream;
 import java.io.Serializable;
@@ -78,38 +79,47 @@ public class SuperBb implements Serializable {
 		kindItems.put("おすすめ品", AppKind.KIND2);
 		kindItems.put("特価品", AppKind.KIND3);
 
-		productPage.setup(productDb.dataCount(), 5);// ページングマネージャー
+		// productPage.setup(productDb.dataCount(), 5);// ページングマネージャー
+                productPage.setup(productDb.count(productDb.getClass().getName()), 5);
 	}
 	/* *****（画像表示処理＜小画像＞）************************/
-	public StreamedContent getPicS() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
-			return new DefaultStreamedContent();
-		} else {
-			ExternalContext sv = context.getExternalContext();
-			Map<String, String> map = sv.getRequestParameterMap();
-			String key = map.get("productId");
-			Product e = (Product) (productDb.find(Long.valueOf(key)));
-			ByteArrayInputStream in = new ByteArrayInputStream(e.getPic_S());
-			DefaultStreamedContent ds = new DefaultStreamedContent(in);
-			return ds;
-		}
-	}
+    public StreamedContent getPicS() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
+            return new DefaultStreamedContent();
+        } else {
+            ExternalContext sv = context.getExternalContext();
+            Map<String, String> map = sv.getRequestParameterMap();
+            String key = map.get("productId");
+//			Product e = (Product) (productDb.find(Long.valueOf(key)));
+//			ByteArrayInputStream in = new ByteArrayInputStream(e.getPic_S());
+//			DefaultStreamedContent ds = new DefaultStreamedContent(in);
+//			return ds;
+            DefaultResultDto result = productDb.find(Long.valueOf(key), productDb.getClass().getName());
+            ByteArrayInputStream in = new ByteArrayInputStream(result.getPic_S());
+            DefaultStreamedContent ds = new DefaultStreamedContent(in);
+            return ds;
+        }
+    }
 	/* *****（画像表示処理＜大画像＞）************************/
-	public StreamedContent getPicL() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
-			return new DefaultStreamedContent();
-		} else {
-			ExternalContext sv = context.getExternalContext();
-			Map<String, String> map = sv.getRequestParameterMap();
-			String key = map.get("productId");
-			Product e = (Product) (productDb.find(Long.valueOf(key)));
-			ByteArrayInputStream in = new ByteArrayInputStream(e.getPic_L());
-			DefaultStreamedContent ds = new DefaultStreamedContent(in);
-			return ds;
-		}
-	}
+    public StreamedContent getPicL() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
+            return new DefaultStreamedContent();
+        } else {
+            ExternalContext sv = context.getExternalContext();
+            Map<String, String> map = sv.getRequestParameterMap();
+            String key = map.get("productId");
+//			Product e = (Product) (productDb.find(Long.valueOf(key)));
+//			ByteArrayInputStream in = new ByteArrayInputStream(e.getPic_L());
+//			DefaultStreamedContent ds = new DefaultStreamedContent(in);
+//			return ds;
+            DefaultResultDto result = productDb.find(Long.valueOf(key), productDb.getClass().getName());
+            ByteArrayInputStream in = new ByteArrayInputStream(result.getPic_L());
+            DefaultStreamedContent ds = new DefaultStreamedContent(in);
+            return ds;
+        }
+    }
 	/* *****（メッセージを作成しキューに入れる）**************/
 	public void facesMessage(String s) {
 		FacesMessage msg = new FacesMessage(s);

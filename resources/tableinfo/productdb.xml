@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table>
+    <name>ZAKKA_PRODUCT</name>
+    <columns>
+        <column jdbcType="BIGINT">ID</column>
+        <column jdbcType="VARCHAR">KIND</column>
+        <column jdbcType="VARCHAR">NAME</column>
+        <column jdbcType="BLOB">PIC_L</column>
+        <column jdbcType="BLOB">PIC_S</column>
+        <column jdbcType="INTEGER">PRICE</column> 
+        <column jdbcType="CLOB">TEXT</column>
+    </columns>
+</table>
